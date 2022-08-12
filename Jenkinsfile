@@ -4,7 +4,7 @@ pipeline {
     BRANCH = "${BRANCH_NAME}"
     USERNAME = 'admin'
     PASSWORD = '%40%24ID%26bHA786'
-    ARTIFACTORYURL = 'localhost:8082/ui'
+    ARTIFACTORYURL = 'artifactory.sbhasin.com'
   }
   stages {
     stage('Build') {
