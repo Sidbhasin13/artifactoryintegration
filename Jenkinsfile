@@ -5,6 +5,8 @@ pipeline {
     USERNAME = 'jenkins'
     PASSWORD = 'Admin%401478'
     ARTIFACTORYURL = 'artifactmanager.jfrog.io'
+    PACKAGENAME = ''
+    REPOSITORYNAME = ''
   }
   stages {
     stage('Build') {
@@ -17,7 +19,7 @@ pipeline {
             """ 
         )
         sh(script: """
-              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/maven-central-cache/commons-cli?to=/thirdparty-mvn-local/ -H 'Content-Type: application/json' 
+              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/${PACKAGENAME}/commons-cli?to=/${REPOSITORYNAME}/ -H 'Content-Type: application/json' 
             """ 
         )
       }
