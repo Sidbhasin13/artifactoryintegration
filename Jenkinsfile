@@ -13,7 +13,7 @@ pipeline {
       }
       steps{
           sh(script: """
-              curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/api/repositories/dummy-repo -H 'Content-Type: application/json' 
+              curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/maven-central/ -H 'Content-Type: application/json' 
             """ 
         )
       }
