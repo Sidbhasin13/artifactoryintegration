@@ -16,6 +16,10 @@ pipeline {
               curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/maven-central/ -H 'Content-Type: application/json' 
             """ 
         )
+        sh(script: """
+              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/maven-central-cache/classworlds?to=/thirdparty-mvn-local/ -H 'Content-Type: application/json' 
+            """ 
+        )
       }
     }
   }
