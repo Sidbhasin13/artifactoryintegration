@@ -17,7 +17,7 @@ pipeline {
             """ 
         )
         sh(script: """
-              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/maven-central-cache/classworlds?to=/thirdparty-mvn-local/ -H 'Content-Type: application/json' 
+              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/maven-central-cache/commons-cli?to=/thirdparty-mvn-local/ -H 'Content-Type: application/json' 
             """ 
         )
       }
