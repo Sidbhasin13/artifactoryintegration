@@ -6,7 +6,8 @@ pipeline {
     PASSWORD = 'Admin%401478'
     ARTIFACTORYURL = 'artifactmanager.jfrog.io'
     PACKAGENAME = ''
-    REPOSITORYNAME = ''
+    REMOTEREPONAME = ''
+    LOCALREPONAME = ''
   }
   stages {
     stage('Build') {
@@ -19,7 +20,7 @@ pipeline {
             """ 
         )
         sh(script: """
-              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/${PACKAGENAME}/commons-cli?to=/${REPOSITORYNAME}/ -H 'Content-Type: application/json' 
+              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/${REMOTEREPONAME}/${PACKAGENAME}?to=/${LOCALREPONAME}/ -H 'Content-Type: application/json' 
             """ 
         )
       }
