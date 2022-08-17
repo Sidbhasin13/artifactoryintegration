@@ -15,8 +15,9 @@ pipeline {
             steps{
                 script{
                     REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
+                    PACKAGENAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
                     sh(script: """
-                        curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAME}/ -H 'Content-Type: application/json' 
+                        curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAME}/${PACKAGENAME}/ -H 'Content-Type: application/json' 
                         """ 
                     )
                 }
