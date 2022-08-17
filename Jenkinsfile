@@ -32,7 +32,7 @@ pipeline {
                     PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
                     LOCALREPONAME = input message: 'Please enter the local repo name', parameters: [string(defaultValue: '', description: '', name: 'Local Repository Name')]
                     sh(script: """
-                            curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/move/${REMOTEREPONAME}/${PACKAGENAME}?to=/${LOCALREPONAME}/ -H 'Content-Type: application/json' 
+                            curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/copy/${REMOTEREPONAME}/${PACKAGENAME}?to=/${LOCALREPONAME}/ -H 'Content-Type: application/json' 
                         """ 
                     )
                 }
