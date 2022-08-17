@@ -35,7 +35,7 @@ pipeline {
                     SUBPACKAGENAME = input message: 'Please enter the sub package name', parameters: [string(defaultValue: '', description: '', name: 'Sub Package Name')]
                     LOCALREPONAME = input message: 'Please enter the local repo name', parameters: [string(defaultValue: '', description: '', name: 'Local Repository Name')]
                     sh(script: """
-                            curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/copy/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}?to=/${LOCALREPONAME}/ -H 'Content-Type: application/json' 
+                            curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/copy/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}?to=/${LOCALREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/ -H 'Content-Type: application/json' 
                         """ 
                     )
                 }
