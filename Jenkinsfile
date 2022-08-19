@@ -14,7 +14,9 @@ pipeline {
             }
             steps{
                 script{
-                    echo "Please Enter the Remote Repo Name"
+                    //Fetching Details from Remote Cache
+                  
+                    echo "Please Enter the Remote-Cache Repo Name"
                     REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
                     echo "Please Enter the Package Name"
                     PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
@@ -33,25 +35,25 @@ pipeline {
             }
             steps{
                 script{
+                    //Fetching Dependencies in Remote Cache from Remote Repository
+                  
                     echo "Please Enter the Remote Repo Name"
-                    REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
-                    echo "Please Enter the Package Name"
-                    PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
-                    echo "Please Enter the Sub Package Name"
-                    SUBPACKAGENAME = input message: 'Please enter the sub package name', parameters: [string(defaultValue: '', description: '', name: 'Sub Package Name')]
+                    REMOTEREPOPATH = input message: 'Please enter the remote repo path', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Path')]
                     sh(script: """
-                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/ -H 'Content-Type: application/json' 
+                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAMEPATH}/ -H 'Content-Type: application/json' 
                           """ 
                      )
                 }
             }
         }
-        stage('Prompt for input') {
+        stage('Copy from Remote-Cache to Local Repository') {
             when {
                 branch 'main'
             }
             steps{
                 script{
+                    // Copy dependency from Remote-Cache to Local Repository
+                    
                     echo "Please Enter the Remote Repo Name"
                     REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
                     echo "Please Enter the Package Name"
