@@ -62,12 +62,18 @@ pipeline {
                     PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
                     echo "Please Enter the Sub Package Name"
                     SUBPACKAGENAME = input message: 'Please enter the sub package name', parameters: [string(defaultValue: '', description: '', name: 'Sub Package Name')]
+                    echo "Please Enter the Dependency Path"
+                    DEPENDENCYPATH = input message: 'Please enter the dependency path', parameters: [string(defaultValue: '', description: '', name: 'Dependency Path')]                   
                     echo "Please Enter the Local Repo Name"
                     LOCALREPONAME = input message: 'Please enter the local repo name', parameters: [string(defaultValue: '', description: '', name: 'Local Repository Name')]
+//                     sh(script: """
+//                             curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/copy/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}?to=/${LOCALREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/ -H 'Content-Type: application/json' 
+//                         """ 
+//                     )
                     sh(script: """
-                            curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/copy/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}?to=/${LOCALREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/ -H 'Content-Type: application/json' 
-                        """ 
-                    )
+                              curl -X POST https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/api/copy/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/${DEPENDENCYPATH}?to=/${LOCALREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/${DEPENDENCYPATH}/ -H 'Content-Type: application/json' 
+                          """ 
+                      )
                 }
             }
         }
