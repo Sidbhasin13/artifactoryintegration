@@ -40,7 +40,7 @@ pipeline {
                     echo "Please Enter the Remote Repo Name"
                     REMOTEREPOPATH = input message: 'Please enter the remote repo path', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Path')]
                     sh(script: """
-                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAMEPATH}/ -H 'Content-Type: application/json' 
+                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPOPATH}/ -H 'Content-Type: application/json' 
                           """ 
                      )
                 }
