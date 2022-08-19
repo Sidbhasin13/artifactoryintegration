@@ -36,11 +36,13 @@ pipeline {
             steps{
                 script{
                     //Fetching Dependencies in Remote Cache from Remote Repository
-                  
+                    
                     echo "Please Enter the Remote Repo Name"
-                    REMOTEREPOPATH = input message: 'Please enter the remote repo path', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Path')]
+                    REMOTEREPONAME = input message: 'Please enter the remote repository name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')] 
+                    echo "Please Enter the Dependency Path"
+                    DEPENDENCYPATH = input message: 'Please enter the dependency path', parameters: [string(defaultValue: '', description: '', name: 'Dependency Path')]                   
                     sh(script: """
-                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPOPATH}/ -H 'Content-Type: application/json' 
+                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAME}/${DEPENDENCYPATH} -H 'Content-Type: application/json' 
                           """ 
                      )
                 }
