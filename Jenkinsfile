@@ -17,13 +17,15 @@ pipeline {
                     //Fetching Details from Remote Cache
                   
                     echo "Please Enter the Remote-Cache Repo Name"
-                    REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
-                    echo "Please Enter the Package Name"
-                    PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
-                    echo "Please Enter the Sub Package Name"
-                    SUBPACKAGENAME = input message: 'Please enter the sub package name', parameters: [string(defaultValue: '', description: '', name: 'Sub Package Name')]
+                    REMOTEREPONAME = input message: 'Please enter the remote-cache repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote-Cache Repository Name')]
+//                     echo "Please Enter the Package Name"
+//                     PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
+//                     echo "Please Enter the Sub Package Name"
+//                     SUBPACKAGENAME = input message: 'Please enter the sub package name', parameters: [string(defaultValue: '', description: '', name: 'Sub Package Name')]
+                    echo "Please Enter the Dependency Path"
+                    DEPENDENCYPATH = input message: 'Please enter the dependency path', parameters: [string(defaultValue: '', description: '', name: 'Dependency Path')]           
                     sh(script: """
-                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAME}/${PACKAGENAME}/${SUBPACKAGENAME}/ -H 'Content-Type: application/json' 
+                          curl -X GET https://${USERNAME}:${PASSWORD}@${ARTIFACTORYURL}/artifactory/${REMOTEREPONAME}/${DEPENDENCYPATH}/ -H 'Content-Type: application/json' 
                           """ 
                      )
                 }
@@ -57,7 +59,7 @@ pipeline {
                     // Copy dependency from Remote-Cache to Local Repository
                     
                     echo "Please Enter the Remote-Cache Repo Name"
-                    REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
+                    REMOTEREPONAME = input message: 'Please enter the remote cache repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote-Cache Repository Name')]
 //                     echo "Please Enter the Package Name"
 //                     PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
 //                     echo "Please Enter the Sub Package Name"
