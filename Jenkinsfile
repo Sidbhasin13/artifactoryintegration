@@ -56,7 +56,7 @@ pipeline {
                 script{
                     // Copy dependency from Remote-Cache to Local Repository
                     
-                    echo "Please Enter the Remote Repo Name"
+                    echo "Please Enter the Remote-Cache Repo Name"
                     REMOTEREPONAME = input message: 'Please enter the remote repo name', parameters: [string(defaultValue: '', description: '', name: 'Remote Repository Name')]
                     echo "Please Enter the Package Name"
                     PACKAGENAME = input message: 'Please enter the package name', parameters: [string(defaultValue: '', description: '', name: 'Package Name')]
